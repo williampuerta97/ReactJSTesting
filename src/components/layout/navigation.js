@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 class Navigation extends Component{
 
@@ -17,19 +18,23 @@ class Navigation extends Component{
         </Menu.Item>
 
         <Menu.Item
-          name='features'
-          active={activeItem === 'features'}
+          name='Home'
+          active={activeItem === 'home'}
           onClick={this.handleItemClick}
+          as={NavLink} 
+          exact to="/" 
         >
-          Features
+          Home
         </Menu.Item>
 
         <Menu.Item
-          name='testimonials'
-          active={activeItem === 'testimonials'}
+          name='users'
+          active={activeItem === 'users'}
           onClick={this.handleItemClick}
+          as={NavLink}
+          exact to ="/usuarios"
         >
-          Testimonials
+          Usuarios
         </Menu.Item>
 
         <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={this.handleItemClick}>

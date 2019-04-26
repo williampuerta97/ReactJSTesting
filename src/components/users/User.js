@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Table, Container } from 'semantic-ui-react'
+import { Table, Container, Form } from 'semantic-ui-react'
 
 class User extends Component{
     constructor(){
         super();
+        this.handleAddClick = this.handleAddClick.bind(this);
         this.state = {
             users : [
                 {nit:"1234567890", nombre: "William", apellido: "Puerta", edad: 21},
@@ -11,6 +12,13 @@ class User extends Component{
                 {nit:"6543217890", nombre: "María", apellido: "Motato", edad: 42}
             ]
         }
+    }
+    
+    handleAddClick(){
+        //this.state.users.push({nit:"111111111", nombre: "Brandon", apellido: "Puerta", edad: 20})
+        this.setState({users : [...this.state.users, {nit:"111111111", nombre: "Brandon", apellido: "Puerta", edad: 20}]})
+        console.log(this.state.users)
+        //.push({nit:"111111111", nombre: "Brandon", apellido: "Puerta", edad: 20})}
     }
     
     render(){
@@ -29,8 +37,8 @@ class User extends Component{
                     </Table.Header>
 
                     <Table.Body>
-                    {users.map(user => 
-                        <Table.Row>
+                    {users.map((user, i) => 
+                        <Table.Row key={i}>
                             <Table.Cell>{user.nit}</Table.Cell>
                             <Table.Cell>{user.nombre}</Table.Cell>
                             <Table.Cell>{user.apellido}</Table.Cell>
@@ -39,6 +47,7 @@ class User extends Component{
                     )}
                     </Table.Body>
                 </Table>
+                <Form.Button onClick={this.handleAddClick}>Agregar</Form.Button>
             </Container>
         );
     }

@@ -1,24 +1,27 @@
 import React, { Component } from 'react'
-import { Table, Container, Form } from 'semantic-ui-react'
+import { Table, Container, Form, Button } from 'semantic-ui-react'
 
 class User extends Component{
     constructor(){
         super();
-        this.handleAddClick = this.handleAddClick.bind(this);
+        this.handleAddUser = this.handleAddUser.bind(this);
         this.state = {
-            users : [
-                {nit:"1234567890", nombre: "William", apellido: "Puerta", edad: 21},
-                {nit:"0987654321", nombre: "Alex", apellido: "Rivera", edad: 46},
-                {nit:"6543217890", nombre: "María", apellido: "Motato", edad: 42}
-            ]
+            users : []
         }
+         
     }
-    
-    handleAddClick(){
-        //this.state.users.push({nit:"111111111", nombre: "Brandon", apellido: "Puerta", edad: 20})
-        this.setState({users : [...this.state.users, {nit:"111111111", nombre: "Brandon", apellido: "Puerta", edad: 20}]})
-        console.log(this.state.users)
-        //.push({nit:"111111111", nombre: "Brandon", apellido: "Puerta", edad: 20})}
+
+    handleAddUser(e){
+        e.preventDefault()
+        let u = {
+            nit: e.target.nit.value,
+            nombre: e.target.nombre.value,
+            apellido: e.target.apellido.value,
+            edad: e.target.edad.value,
+        }
+        this.setState({
+            users: this.state.users.concat([u])
+        })
     }
     
     render(){
@@ -26,6 +29,26 @@ class User extends Component{
         
         return(
             <Container>
+                <Form onSubmit={this.handleAddUser}>
+                    <Form.Field>
+                        <label>NIT</label>
+                        <input type='number' name='nit'/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label>NOMBRE</label>
+                        <input type='text' name='nombre'/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label>APELLIDO</label>
+                        <input type='text' name='apellido'/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label>EDAD</label>
+                        <input type='number' name='edad'/>
+                    </Form.Field>
+                    <Button primary type='submit'>AGREGAR</Button>
+                </Form>
+
                 <Table striped>
                     <Table.Header>
                     <Table.Row>
@@ -47,7 +70,6 @@ class User extends Component{
                     )}
                     </Table.Body>
                 </Table>
-                <Form.Button onClick={this.handleAddClick}>Agregar</Form.Button>
             </Container>
         );
     }

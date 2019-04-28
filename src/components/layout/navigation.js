@@ -18,16 +18,6 @@ class Navigation extends Component{
         </Menu.Item>
 
         <Menu.Item
-          name='Home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
-          as={NavLink} 
-          exact to="/" 
-        >
-          Home
-        </Menu.Item>
-
-        <Menu.Item
           name='users'
           active={activeItem === 'users'}
           onClick={this.handleItemClick}
@@ -35,10 +25,6 @@ class Navigation extends Component{
           exact to ="/usuarios"
         >
           Usuarios
-        </Menu.Item>
-
-        <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={this.handleItemClick}>
-          Sign-in
         </Menu.Item>
       </Menu>
     )
